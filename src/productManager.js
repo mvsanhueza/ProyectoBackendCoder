@@ -20,7 +20,7 @@ class ProductManager {
             return "Producto existente";
         }
 
-        product.id = this.incrementarID();
+        product.id = ProductManager.incrementarID();
         products.push(product);
 
         //Se guarda el nuevo producto en el archivo txt:
@@ -94,7 +94,7 @@ class ProductManager {
         }
     }
 
-    incrementarID() {
+    static incrementarID() {
         console.log(this.incrementarId);
         if (this.incrementarId) {
             this.incrementarId++;
