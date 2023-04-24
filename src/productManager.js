@@ -20,8 +20,12 @@ class ProductManager {
             return "Producto existente";
         }
 
-        product.id = ProductManager.incrementarID();
+        
+        product.id = products.length + 1;
         products.push(product);
+
+        // const productClass = new Product(product.title, product.description, product.code, product.price, product.status, product.stock, product.category, product.thumbnails || []);
+        // products.push(productClass);
 
         //Se guarda el nuevo producto en el archivo txt:
         await fs.writeFile(this.path, JSON.stringify(products));
@@ -95,15 +99,13 @@ class ProductManager {
     }
 
     static incrementarID() {
-        console.log(this.incrementarId);
-        if (this.incrementarId) {
-            this.incrementarId++;
+        if (!this.idIncrement) {    
+            this.idIncrement++;
         }
-        else {
-            this.incrementarId = 1;
+        else{
+            this.idIncrement = 1;
         }
-
-        return this.incrementarId;
+        return this.idIncrement;
     }
 
 }

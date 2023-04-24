@@ -9,13 +9,14 @@ class CartManager{
     }
 
     async addCart(){
-        const cart = {
-            id: this.incrementarId(),
-            products:[]
-        };
-
+        
         const cartJSON = await fs.readFile(this.path, 'utf-8');
         const carts = JSON.parse(cartJSON);
+
+        const cart = {
+            id: carts.length + 1,
+            products:[]
+        };
 
         carts.push(cart);
 
@@ -80,8 +81,7 @@ class CartManager{
     }
 
 
-    incrementarId(){
-        console.log("IncrementarID");
+    static incrementarId(){
         console.log(this.IncrementarID);
         if(this.IncrementarID){
             this.IncrementarID++;
