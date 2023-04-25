@@ -13,8 +13,9 @@ class CartManager{
         const cartJSON = await fs.readFile(this.path, 'utf-8');
         const carts = JSON.parse(cartJSON);
 
+        let idMax = carts.reduce((max, p) => p.id > max ? p.id : max, 0);
         const cart = {
-            id: carts.length + 1,
+            id: idMax + 1,
             products:[]
         };
 

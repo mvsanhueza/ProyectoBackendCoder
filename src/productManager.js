@@ -20,8 +20,8 @@ class ProductManager {
             return "Producto existente";
         }
 
-        
-        product.id = products.length + 1;
+        let idMax = products.reduce((max, p) => p.id > max ? p.id : max, 0);
+        product.id = idMax + 1;
         products.push(product);
 
         // const productClass = new Product(product.title, product.description, product.code, product.price, product.status, product.stock, product.category, product.thumbnails || []);
