@@ -56,7 +56,7 @@ class CartManager{
 
         await fs.writeFile(this.path, JSON.stringify(carts));
     }
-    async addProductToCart(cid, pid){
+    async addProductToCart(cid, pid, quantity){
         const cart = await this.getCartById(cid);
         if(!cart){
             return "Carrito no encontrado";
@@ -69,11 +69,13 @@ class CartManager{
         //Si existe el carrito y el producto se analiza que si el carrito contiene el producto o no:
         const productCart = cart.products.find(p=>p.product == product.id);
 
+        let cantidad = parseInt(quantity) || 1;
+
         if(productCart){
-            productCart.quantity++;
+            productCart.quantity += cantidad;
         }
         else{
-            cart.products.push({product: product.id, quantity: 1});
+            cart.products.push({product: product.id, quantity: cantidad});
         }
 
         //Se guarda el carrito modificado:

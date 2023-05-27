@@ -22,7 +22,8 @@ cartRouter.get('/:id', async (req,res)=>{
 
 cartRouter.post('/:cid/product/:pid', async (req,res)=>{
     const {cid, pid} = req.params;
-    const mensaje = await cartManager.addProductToCart(cid, pid);
+    const {quantity} = req.body;
+    const mensaje = await cartManager.addProductToCart(cid, pid, quantity);
     res.send(mensaje);
 })
 

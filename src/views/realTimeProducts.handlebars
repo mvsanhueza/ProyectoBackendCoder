@@ -1,0 +1,52 @@
+<div class="containerForm">
+    <form class="w-25" id="form_Product">
+        <div class="mb-3">
+            <label for="title" class="form-label">Título</label>
+            <input type="text" class="form-control" id="title" name="title" />
+        </div>
+        <div class="mb-3">
+            <label for="code" class="form-label">Código</label>
+            <input type="text" class="form-control" id="code" name="code" />
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Precio</label>
+            <input type="number" class="form-control" id="price" name="price" />
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Categoría</label>
+            <input type="text" class="form-control" id="category" name="category" />
+        </div>
+        <div class="mb-3">
+            <label for="stock" class="form-label">Stock</label>
+            <input type="number" class="form-control" id="stock" name="stock" />
+        </div>
+        <div class="mb-3">
+            <label for="thumbnails" class="form-label">Thumbnails</label>
+            <input type="text" class="form-control" id="thumbnails" name="thumbnails" />
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Descripción</label>
+            <textarea class="form-control" id="description" style="height: 100px;" name="description"></textarea>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="status" checked name="status"/>
+            <label class="form-check-label" for="status">Estado</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="btn_AddProduct">Crear Producto</button>
+    </form>
+    <div class="contenedorProduct" id="productsContainer">
+        {{#each products}}
+        <div id={{this.id}}>
+            <button onclick="borrarProducto_Click({{this.id}})" class="deleteProduct_button"><i class="bi bi-trash"></i></button>
+            <p class="productTitle"><strong>{{this.title}}</strong></p>
+            <p><strong>Descripción: </strong>{{this.description}}</p>
+            <p><strong>Code: </strong>{{this.code}}</p>
+            <p><strong>Precio: </strong>{{this.price}}</p>
+            <p><strong>Estado: </strong>{{this.status}}</p>
+            <p><strong>Stock: </strong>{{this.stock}}</p>
+            <p><strong>Categoría: </strong>{{this.category}}</p>
+        </div>
+        {{/each}}
+    </div>
+</div>
