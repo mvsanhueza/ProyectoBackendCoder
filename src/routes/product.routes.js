@@ -48,8 +48,11 @@ productRouter.get('/', async (req, res)=>{
         result.nextPage = products.nextPage;
         result.hasPrevPage = products.hasPrevPage;
         result.hasNextPage = products.hasNextPage;
-        result.prevLink = products.hasPrevPage ? `http://localhost:8080/api/products?limit=${intLimit}&page=${products.prevPage}` : null;
-        result.nextLink = products.hasNextPage ? `http://localhost:8080/api/products?limit=${intLimit}&page=${products.nextPage}` : null;
+
+        //Se busca el prevlink y el nextling según corresponda:
+        let linkAddOptions = (limit ? (`&limit=${limit}`) : "") + (sort ? (`&sort=${sort}`) : "") + (query ? (`&query=${query}`) : "");
+        result.prevLink = products.hasPrevPage ? (`http://localhost:8080/api/products?page=${products.prevPage}` + linkAddOptions) : null;
+        result.nextLink = products.hasNextPage ? (`http://localhost:8080/api/products?page=${products.nextPage}` + linkAddOptions) : null;
     }
     catch{
     }

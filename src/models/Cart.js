@@ -8,11 +8,13 @@ const cartSchema = new Schema({
                     type: Schema.Types.ObjectId,
                     ref: "products",
                 },
-                cant: Number
+                quantity: Number
             }
         ],
         default: []
     }
 })
 
-export default cartModel = model("carts", cartSchema);
+const cartModel = model('carts', cartSchema);
+
+export default cartModel;
