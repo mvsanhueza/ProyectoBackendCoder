@@ -1,4 +1,3 @@
-const socket = io();
 
 //Se busca el formulario y se le agrega el eventlistener:
 const formProduct = document.getElementById('form_Product');
@@ -27,8 +26,9 @@ if(formProduct){
         formProduct.reset();
     })
     }
+    const socket = io();
 
-socket.on('actProducts', (products)=>{
+    socket.on('actProducts', (products)=>{
     divProductContainer.innerHTML = '';
     products.forEach(product => {
         divProductContainer.innerHTML += `<div id=${product.id}>
@@ -47,4 +47,27 @@ socket.on('actProducts', (products)=>{
 
 function borrarProducto_Click(id){
     socket.emit('deleteProduct', id);
+}
+
+
+async function addToCart_Click(btn) {
+    //Se utiliza le id del carrito ya creado en mongoose, al no poder almacenar el id de un carrito nuevo:
+    const cartId = "64756f902b38f27b6ab69f65";
+
+    //Se agrega el producto al carrito:
+    try{
+        const response = await fetch(`http://localhost:8080/api/carts/${cartId}/products/${btn.id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+        
+        console.log('Producto agregado');;
+    }
+    catch (err){
+        console.log("Error al agregar al carrito: ", err);
+    }
+    
 }

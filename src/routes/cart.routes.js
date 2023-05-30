@@ -33,8 +33,8 @@ cartRouter.post('/', async (req,res)=>{
 
     //Se genera un carro nuevo:
     try{
-        await cartModel.create({});
-        res.send('Carrito creado');
+        const cart = await cartModel.create({});
+        res.send(cart);
     }
     catch(err){
         res.send('Error al crear el carrito', err);
@@ -70,9 +70,10 @@ cartRouter.delete('/:cid/products/:pid', async (req,res)=>{
 cartRouter.get('/:id', async (req,res)=>{
     const {id} = req.params;
     try{
-        const products = await cartModel.findOne({_id: id}).populate('products.id_product');
+        const products = await cartModel.findOne({_id: id}).populate('products.id_product').lean();
         if(products){
-            res.send(products.products);
+            res.render('cart',{products: products.products});
+            //res.send(products.products);
         }
         else{
             res.send({error: "No se encontro el carrito con el ID ingresado"})
@@ -102,7 +103,7 @@ cartRouter.post('/:cid/products/:pid', async (req,res)=>{
         res.send({error: "No se encontro el producto con el ID ingresado"});
         return;
     }
-
+    console.log(cart);
     //Se analiza si existe el producto en el carrito:
     const cartProduct = cart.products.find(p => p.id_product._id == pid);
 
@@ -112,9 +113,10 @@ cartRouter.post('/:cid/products/:pid', async (req,res)=>{
     }
     else{
         //Se agrega el producto al carrito:
+        console.log({id_product: product._id, quantity: cantidad});
         cart.products.push({id_product: product._id, quantity: cantidad});
     }
-
+    console.log(cart);
     //Se actualiza el carrito en la bd:
     await cartModel.findByIdAndUpdate(cid,cart);
 

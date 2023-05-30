@@ -2,11 +2,26 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+
+    padding: 10px;
 }
 
-.productTitle{
+.product{
+    width: 50%;
+    max-width: 400px;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: self-start;
+}
+
+.product_title{
     font-size: 1.5rem;
+    align-self: center;
 }
 
 body {

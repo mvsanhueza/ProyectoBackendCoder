@@ -24,6 +24,7 @@ productRouter.get('/', async (req, res)=>{
         totalPages: 0,
         prevPage: 0,
         nextPage: 0,
+        page: 0,
         hasPrevPage: false,
         hasNextPage: false,
         prevLink: null,
@@ -38,7 +39,6 @@ productRouter.get('/', async (req, res)=>{
         let sortObj = sort && (sort === 'asc' || sort === 'desc') ? {price: sort} : {};
         //Para el query se ferifica si existe el parametro en el model:
         let queryObj = query ? JSONParse(query) : {};
-    
         const products = await productModel.paginate(queryObj, { limit: intLimit, page: intPage, sort: sortObj, lean: true });  
 
         result.status = "success";
@@ -48,6 +48,7 @@ productRouter.get('/', async (req, res)=>{
         result.nextPage = products.nextPage;
         result.hasPrevPage = products.hasPrevPage;
         result.hasNextPage = products.hasNextPage;
+        result.page = intPage;
 
         //Se busca el prevlink y el nextling según corresponda:
         let linkAddOptions = (limit ? (`&limit=${limit}`) : "") + (sort ? (`&sort=${sort}`) : "") + (query ? (`&query=${query}`) : "");
@@ -57,7 +58,7 @@ productRouter.get('/', async (req, res)=>{
     catch{
     }
 
-    res.send(result);
+    res.render('home', result);
 })
 
 productRouter.get('/realtimeproducts', async (req, res)=>{
@@ -96,7 +97,9 @@ productRouter.get('/:id', async (req,res)=>{
 productRouter.post('/',async (req,res)=>{
     const {title, description,code,price,stock,category,thumbnails} = req.body;
 
-    await productModel.create({title:title, description: description, code: code, price: price, stock: stock, category: category, thumbnails: thumbnails});
+    const thumbnailsVal = thumbnails ?? [];
+
+    await productModel.create({title:title, description: description, code: code, price: price, stock: stock, category: category, thumbnails: thumbnailsVal});
 
     // const mensaje = await productManager.addProduct({title, description,code,price,status,stock,category,thumbnails});
     res.send("Objeto agregado");

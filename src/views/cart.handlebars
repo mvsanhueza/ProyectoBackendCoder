@@ -1,0 +1,14 @@
+<div class="contenedorProduct">
+    {{#each products}}
+    <div class="product">
+        <p class="product_title"><strong>{{this.id_product.title}}</strong></p>
+        <p><strong>Descripción: </strong>{{this.id_product.description}}</p>
+        <p><strong>Code: </strong>{{this.id_product.code}}</p>
+        <p><strong>Precio: </strong>{{this.id_product.price}}</p>
+        <p><strong>Estado: </strong>{{this.id_product.status}}</p>
+        <p><strong>Stock: </strong>{{this.id_product.stock}}</p>
+        <p><strong>Categoría: </strong>{{this.id_product.category}}</p>
+        <p><strong>Cantidad: </strong>{{this.quantity}}</p>
+    </div>
+    {{/each}}
+</div>
