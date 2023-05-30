@@ -6,9 +6,9 @@ import productModel from "../models/Product.js";
 const cartManager = new CartManager('./carts.json');
 const cartRouter = Router();
 
-function getCartById(cid){
+const getCartById = async (cid) => {
     try{
-        const cart = cartModel.findById(cid);
+        const cart = await cartModel.findById(cid);
         return cart;
     }
     catch{
@@ -16,9 +16,9 @@ function getCartById(cid){
     }
 }
 
-function getProductById(pid){
+const getProductById = async (pid) => {
     try{
-        const product = productModel.findById(pid);
+        const product = await productModel.findById(pid);
         return product;
     }
     catch{
@@ -45,7 +45,7 @@ cartRouter.post('/', async (req,res)=>{
 cartRouter.delete('/:cid/products/:pid', async (req,res)=>{
     const {cid, pid} = req.params;
     //Se busca el carrito:
-    const cart = getCartById(cid);
+    const cart = await getCartById(cid);
 
     if(!cart){
         res.send({error: "No se encontro el carrito con el ID ingresado"});
@@ -70,10 +70,9 @@ cartRouter.delete('/:cid/products/:pid', async (req,res)=>{
 cartRouter.get('/:id', async (req,res)=>{
     const {id} = req.params;
     try{
-        const cart = await cartModel.findOne({_id: id});
-        console.log(cart);
-        if(cart){
-            res.send(cart.products);
+        const products = await cartModel.findOne({_id: id}).populate('products.id_product');
+        if(products){
+            res.send(products.products);
         }
         else{
             res.send({error: "No se encontro el carrito con el ID ingresado"})
@@ -92,8 +91,8 @@ cartRouter.post('/:cid/products/:pid', async (req,res)=>{
     let cantidad = parseInt(quantity) || 1;
 
     //Se analiza si existe el carrito y producto:
-    const cart = getCartById(cid);
-    const product = getProductById(pid);
+    const cart = await getCartById(cid);
+    const product = await getProductById(pid);
 
     if(!cart){
         res.send({error: "No se encontro el carrito con el ID ingresado"});
@@ -103,7 +102,6 @@ cartRouter.post('/:cid/products/:pid', async (req,res)=>{
         res.send({error: "No se encontro el producto con el ID ingresado"});
         return;
     }
-
 
     //Se analiza si existe el producto en el carrito:
     const cartProduct = cart.products.find(p => p.id_product._id == pid);
@@ -127,19 +125,24 @@ cartRouter.put('/:cid', async (req,res)=>{
     const {cid} = req.params;
     const {products} = req.body;
 
+    if(!products){
+        res.send({error: "No se especificaron los productos a agregar"});
+        return;
+    }
+
     //Se busca el carrito:
-    const cart = getCartById(cid);
+    const cart = await getCartById(cid);
 
     if(!cart){
         res.send({error: "No se encontro el carrito con el ID ingresado"});
         return;
     }
-
     //Se buscan los ids de los productos para agregarlos al carrito:
     //Se genera el nuevo array de productos:
     let newProducts = [];
     for(let i = 0; i < products.length; i++){   
-        const product = getProductById(products[i].id_product);
+        const product = await getProductById(products[i].id_product);
+        console.log(product);
         if(product){
             newProducts.push({id_product: product._id, quantity: products[i].quantity});
         }
@@ -165,8 +168,8 @@ cartRouter.put('/:cid/products/:pid', async (req,res)=>{
     }
 
     //Se busca el carrito y el producto:
-    const cart = getCartById(cid);
-    const product = getProductById(pid);
+    const cart = await getCartById(cid);
+    const product = await getProductById(pid);
 
     if(!cart){
         res.send({error: "No se encontro el carrito con el ID ingresado"});
@@ -178,8 +181,9 @@ cartRouter.put('/:cid/products/:pid', async (req,res)=>{
     }
 
 
+    console.log(cart);
     //Se analiza si existe el producto en el carrito:
-    const cartProduct = cart.products.findOne(p => p.id_product._id == pid);
+    const cartProduct = cart.products.find(p => p.id_product._id == pid);
 
     if(cartProduct){
         //Se actualiza a la cantidad especificada:
@@ -188,7 +192,7 @@ cartRouter.put('/:cid/products/:pid', async (req,res)=>{
         //Se actualiza el carrito en la bd:
         await cartModel.findByIdAndUpdate(cid,cart);
 
-        res.send('Cantidad agregada al carrito');
+        res.send('Cantidad actualizada al carrito');
     }
     else{
         res.send({error: "No se encontro el producto en el carrito"});
@@ -198,7 +202,7 @@ cartRouter.put('/:cid/products/:pid', async (req,res)=>{
 cartRouter.delete('/:cid', async (req,res)=>{
     const {cid} = req.params;
     //Se busca el carrito:
-    const cart = getCartById(cid);
+    const cart = await getCartById(cid);
 
     if(!cart){
         res.send({error: "No se encontro el carrito con el ID ingresado"});
@@ -210,7 +214,7 @@ cartRouter.delete('/:cid', async (req,res)=>{
 
     await cartModel.findByIdAndUpdate(cid,cart);
 
-    res.send('Carrito eliminado');
+    res.send('Productos eliminados del carrito');
 })
 
 export default cartRouter;
