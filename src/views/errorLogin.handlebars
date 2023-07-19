@@ -1,0 +1,26 @@
+<div class="containerLogin">
+    <h2>Ingresa</h2>
+
+    <form class="w-25" id="form_login" action="/api/sessions/login" method="post">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" />
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" name="password" />
+            </div>       
+            <button type="submit" class="btn btn-primary">Sign in</button>
+            <div class="text-center">
+                <p class="text-danger">La contraseña o el email son incorrectos</p>
+            </div>
+            <div class="text-center">
+                <p>¿Sin registro? <a href="/api/signup">Registráte</a></p>
+            </div>
+    </form>
+    <div>
+        <a href="/api/sessions/githubSignin" class="noneTxtDecoration"><i class="bi bi-github fs-4"></i></a>
+        {{!-- <a href="/api/sessions/facebookSignin"><i class="bi bi-facebook"></i></a> --}}
+        <a href="/api/sessions/googleSignin" class="noneTxtDecoration"><i class="bi bi-google fs-4"></i></a>
+    </div>
+</div>

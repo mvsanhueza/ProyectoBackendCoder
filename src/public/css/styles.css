@@ -1,9 +1,27 @@
+.contenedorHome{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+}
+
 .contenedorProduct{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    padding: 10px;
+}
 
+.contenedorChat{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     padding: 10px;
 }
 
@@ -45,4 +63,17 @@ body {
 
 .bi-trash{
     color: red;
+}
+
+.containerLogin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.userInfo{
+    align-self: flex-start;
+    width: 20%;
 }
