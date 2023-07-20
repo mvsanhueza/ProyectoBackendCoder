@@ -77,7 +77,6 @@ export const postCartProduct = async (req, res) => {
         return;
     }
 
-    console.log(cart.products);
     //Se analiza si existe el producto en el carrito:
     const cartProduct = cart.products.find(p => p.id_product._id == pid);
 
@@ -86,10 +85,8 @@ export const postCartProduct = async (req, res) => {
         cartProduct.quantity += cantidad;
     }
     else {
-        console.log(product);
         //Se agrega el producto al carrito:
         cart.products.push({ id_product: product._id, quantity: cantidad });
-        console.log(cart.products);
     }
     //Se actualiza el carrito en la bd:
     await cartsService.updateCart(cid, cart);
@@ -209,17 +206,17 @@ export const getPurchase = async (req, res) =>{
         }
         const newTicket = await ticketService.createTicket(objTicket);       
         const cart = await cartsService.getCartById(cid);
-        console.log(cart);
         //Se descuentan los stocks de los productos comprados y se eliminan los productos del carrito:
         for(let i = 0; i < productsTicket.length; i++ ){
 
             const newProduct = {...productsPurchase[i].id_product, stock: productsPurchase[i].id_product.stock - productsPurchase[i].quantity};
             const productUpdated = await productsService.updateProduct(newProduct._id, newProduct);        
-            console.log(productUpdated);
-            cart.products = cart.products.filter(p => p.id_product._id != newProduct._id);
-            //Se actualiza el carrito en la bd:
-            const newCart =  await cartsService.updateCart(cid, cart);
         }
+        cart.products = cart.products.filter(p => !productsPurchase.some(pP => pP.id_product._id.toString() == p.id_product.toString()));
+
+        await cartsService.updateCart(cid, cart);
+
+        res.render('checkout', {code: newTicket.code})
     }
     catch(err){
         res.send({error: err});

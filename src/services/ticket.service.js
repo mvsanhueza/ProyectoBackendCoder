@@ -6,7 +6,6 @@ const createCodeTicket = async () =>{
 
         //Se buscan los codes de los ticket:
         const codesNumber = tickets.map(ticket => parseInt(ticket.code.split('#')[1]));
-        console.log(codesNumber);
         let codeTicket = codesNumber.length > 0 ? ('#'+(Math.max(...codesNumber) + 1)) : '#1';
         return codeTicket;
     }

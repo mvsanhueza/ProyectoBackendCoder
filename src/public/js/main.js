@@ -146,7 +146,5 @@ async function purchaseCart_Click(){
     const user = await getCurrentUser();
     const cartId = user.cart.id_cart;
 
-    const response = await fetch(`http://localhost:8080/api/carts/${cartId}/purchase`);
-    const data = await response.json();
-
+    window.location.href = `http://localhost:8080/api/carts/${cartId}/purchase`;
 }
