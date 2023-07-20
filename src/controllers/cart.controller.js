@@ -1,6 +1,7 @@
 import cartsService from "../services/carts.service.js";
 import productsService from "../services/products.service.js";
 import ticketService from "../services/ticket.service.js";
+import { transporter } from "../utils/nodemailer.js";
 
 export const createCart = async (req, res) => {
     try {
@@ -215,6 +216,23 @@ export const getPurchase = async (req, res) =>{
         cart.products = cart.products.filter(p => !productsPurchase.some(pP => pP.id_product._id.toString() == p.id_product.toString()));
 
         await cartsService.updateCart(cid, cart);
+
+        //Se genera el texto html de email
+        let htmlMail = `<h1> Hemos confirmado tu compra </h1>`;
+        htmlMail += `<h2> El código de seguimiento es ${newTicket.code}: </h2>`;
+        for(let i = 0; i < productsPurchase.length; i++){
+            htmlMail += `<p> <strong> ${productsPurchase[i].id_product.title}</strong> - ${productsPurchase[i].quantity} Unidades </h3>`;
+        }
+
+        htmlMail += `<h2> El monto total es de $${amount} </h2>`;	
+        htmlMail += `<h3> Muchas gracias por tu compra! </h3>`;
+
+        //Se envía el mail con el ticket:
+        let email = await transporter.sendMail({
+            to: req.user.email,
+            subject: `Compra ${newTicket.code}`,
+            html: htmlMail
+        });
 
         res.render('checkout', {code: newTicket.code, products: productsPurchase, amount: newTicket.amount});
     }
