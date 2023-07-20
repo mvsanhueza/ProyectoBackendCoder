@@ -37,7 +37,15 @@ class CartsService {
             return err;
         }
     }
-    
+    async findByIdAndPopulate(id, populateStr){
+        try{
+            const response = await cartsMongo.findByIdAndPopulate(id, populateStr);
+            return response;
+        }
+        catch(error){
+            return error;
+        }
+    }
 }
 
 const cartsService = new CartsService();

@@ -2,6 +2,7 @@ import { hashData } from "../utils/utils.js";
 import usersMongo from "../persistencia/DAOs/MongoDAOs/usersMongo.js";
 import userDBDTO from "../persistencia/DTOs/userDB.dto.js";
 import userResponse from "../persistencia/DTOs/userResponse.dto.js";
+import cartsService from "./carts.service.js";
 
 class UsersService{
     async findAllUsers(){
@@ -36,6 +37,9 @@ class UsersService{
             //Se hashea la password en el service:
             const hashPassword = await hashData(obj.password);
             const userHashed = {...obj, password: hashPassword};
+            //Se crea el carrito del usuario:
+            const cartUser = await cartsService.createCart();
+            userHashed.cart = {id_cart: cartUser._id}          
             const userDB = new userDBDTO(userHashed);
             const newUser = await usersMongo.createOne(userDB);
             return newUser;

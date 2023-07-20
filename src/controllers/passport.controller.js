@@ -32,7 +32,7 @@ passport.use('login', new LocalStrategy(
         try {
             //Se analiza si es superAdmin:
             const user = await usersService.findUser({ email, externalLogin: false });
-            console.log(user);
+
             if (!user) {
                 return done(null, false);
             }

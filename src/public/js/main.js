@@ -53,15 +53,41 @@ const socket = io();
 
 // function borrarProducto_Click(id){
 //     socket.emit('deleteProduct', id);
-// }
+// 
 
+const getCurrentUser = async () =>{
+    try{
+        const responseUser = await fetch('http://localhost:8080/api/sessions/current');
+        const user = await responseUser.json();
+        return user;
+    }
+    catch{
+        return null;
+    }
+} 
+async function goToCart_Click(){
+    //Se busca el id del cart del usuario:
+    try{
+        const user = await getCurrentUser();
+        const cartId = user.cart.id_cart;
+        window.location.href = `http://localhost:8080/api/carts/${cartId}`;
+    }
+    catch(error){
+        console.log({error: error});
+    }
+}
 
 async function addToCart_Click(btn) {
-    //Se utiliza le id del carrito ya creado en mongoose, al no poder almacenar el id de un carrito nuevo:
-    const cartId = "64756f902b38f27b6ab69f65";
-
+    //Se utiliza le id del carrito ya creado en mongoose, al no poder almacenar el id de un carrito nuevo:  
     //Se agrega el producto al carrito:
     try{        
+        //Primero se crea el carrito en caso de que no existe en la session:
+
+        const user = await getCurrentUser();
+
+        //SE busca el cartId del usuario:
+        const cartId = user.cart.id_cart;
+
         const response = await fetch(`http://localhost:8080/api/carts/${cartId}/products/${btn.id}`, {
             method: 'POST',
             headers: {
@@ -79,8 +105,7 @@ async function addToCart_Click(btn) {
 }
 
 async function sendMessage_Click(){
-    const response = await fetch('http://localhost:8080/api/sessions/current');
-    const user = await response.json();
+    const user = await getCurrentUser();
 
     const input = document.getElementById('message');
     const message = input.value;
@@ -115,4 +140,13 @@ if(window.location.href.includes('chat')){
     }
 
     socket.emit('client:LoadMessages');
+}
+
+async function purchaseCart_Click(){
+    const user = await getCurrentUser();
+    const cartId = user.cart.id_cart;
+
+    const response = await fetch(`http://localhost:8080/api/carts/${cartId}/purchase`);
+    const data = await response.json();
+
 }

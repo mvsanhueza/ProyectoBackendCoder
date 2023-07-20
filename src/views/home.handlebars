@@ -2,6 +2,7 @@
     <div class="userInfo">
         <p>Bienvenido {{this.session.first_name}} {{this.session.last_name}}</p>
         <button class="btn btn-primary btn-sm" onclick="location.href='/api/sessions/logout'"> Cerrar sesión</button>
+        <button class="btn btn-primary btn-sm" onclick='goToCart_Click()'> Carrito</button>
     </div>
     <div class="contenedorProduct">
         {{#each this.result.payload}}

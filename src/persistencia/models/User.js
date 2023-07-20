@@ -1,15 +1,15 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
-const usersSchema = new mongoose.Schema({
-    first_name:{
+const usersSchema = new Schema({
+    first_name: {
         type: String,
         required: true,
     },
-    last_name:{
+    last_name: {
         type: String,
         required: true,
     },
-    email:{
+    email: {
         type: String,
         required: true,
         unique: true,
@@ -19,11 +19,11 @@ const usersSchema = new mongoose.Schema({
         required: true,
         default: 0,
     },
-    password:{
+    password: {
         type: String,
         required: true,
     },
-    isAdmin:{
+    isAdmin: {
         type: Boolean,
         default: false,
     },
@@ -31,11 +31,20 @@ const usersSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    cart: {
+        type: {
+            _id: false,
+            id_cart: {
+                type: Schema.Types.ObjectId,
+                ref: 'carts',
+            },
+        },
+        default: null,
+    },
     githubId: String,
     googleId: String,
-    //facebookId: String,
 })
 
-const userModel = mongoose.model('users', usersSchema);
+const userModel = model('users', usersSchema);
 
 export default userModel;

@@ -1,5 +1,6 @@
 import cartsService from "../services/carts.service.js";
 import productsService from "../services/products.service.js";
+import ticketService from "../services/ticket.service.js";
 
 export const createCart = async (req, res) => {
     try {
@@ -35,18 +36,26 @@ export const deleteCartProduct = async (req, res) => {
 export const getCartProducts = async (req, res) => {
     const { id } = req.params;
     try {
-        const cart = await cartsService.getCartById(id);
-
-        if (cart) {
-            const products = cart.populate('products.id_product').lean();
-            res.render('cart', { products: products.products });
+        const productsCart = await cartsService.findByIdAndPopulate(id, 'products.id_product');
+        if(productsCart){
+            res.render('cart', { products: productsCart.products });
         }
-        else {
-            res.send({ error: "No se encontro el carrito con el ID ingresado" })
+        else{
+            res.send({error: "No se encontro el carrito con el ID ingresado"});
         }
+        // const cart = await cartsService.getCartById(id);
+        // if (cart) {
+        //     console.log(cart);
+        //     const products = cart.populate('products.id_product');
+        //     console.log(products);
+        //     
+        // }
+        // else {
+        //     res.send({ error: "No se encontro el carrito con el ID ingresado" })
+        // }
     }
-    catch {
-        res.send({ error: "No se encontro el carrito con el ID ingresado" })
+    catch(error) {
+        res.send({ error: error})
     }
 }
 export const postCartProduct = async (req, res) => {
@@ -174,4 +183,46 @@ export const clearCartProducts = async (req,res) =>{
     await cartsService.updateCart(cid, cart);
 
     res.send('Productos eliminados del carrito');
+}
+
+export const getPurchase = async (req, res) =>{
+    const {cid} = req.params;
+    
+    //Se buscan los productos que realizan la compra:
+    try{
+        const productsCart = await cartsService.findByIdAndPopulate(cid, 'products.id_product');
+        const productsPurchase = productsCart.products.filter(p=> p.id_product.stock >= p.quantity);
+        if(productsPurchase.length === 0){
+            res.send({error: "No hay productos suficientes para realizar la compra"});
+            return;
+        }
+
+        //En caso que se pueda efectuar la compra se genera el ticket:
+        const amount = productsPurchase.reduce((acc, p) => acc + (p.id_product.price * p.quantity), 0);
+        
+        const productsTicket = productsPurchase.map(p => ({id_product: p.id_product._id, quantity: p.quantity}));
+
+        const objTicket = {
+            products: productsTicket,
+            amount: amount,
+            purchaser: req.user.email
+        }
+        const newTicket = await ticketService.createTicket(objTicket);       
+        const cart = await cartsService.getCartById(cid);
+        console.log(cart);
+        //Se descuentan los stocks de los productos comprados y se eliminan los productos del carrito:
+        for(let i = 0; i < productsTicket.length; i++ ){
+
+            const newProduct = {...productsPurchase[i].id_product, stock: productsPurchase[i].id_product.stock - productsPurchase[i].quantity};
+            const productUpdated = await productsService.updateProduct(newProduct._id, newProduct);        
+            console.log(productUpdated);
+            cart.products = cart.products.filter(p => p.id_product._id != newProduct._id);
+            //Se actualiza el carrito en la bd:
+            const newCart =  await cartsService.updateCart(cid, cart);
+        }
+    }
+    catch(err){
+        res.send({error: err});
+        return;
+    }
 }

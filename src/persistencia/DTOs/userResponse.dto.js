@@ -5,5 +5,6 @@ export default class userResponse{
         this.email = obj.email;
         this.age = obj.age;
         this.isAdmin = obj.isAdmin;
+        this.cart = obj.cart;
     }
 }

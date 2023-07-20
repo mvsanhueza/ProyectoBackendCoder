@@ -2,10 +2,10 @@ import usersService from "../services/users.service.js";
 import userResponse from "../persistencia/DTOs/userResponse.dto.js";
 
 export const signup = async (req,res) =>{
-    const { email, password } = req.body;
+    const { email, password, first_name, last_name } = req.body;
 
     const user = await usersService.findUser({ email });
-    if (user) {
+    if (user || !email || !password || !first_name || !last_name) {
         return res.redirect('/api/errorSignup')
     }
     await usersService.createUser(req.body);
