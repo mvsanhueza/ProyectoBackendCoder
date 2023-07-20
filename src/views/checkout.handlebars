@@ -1,5 +1,9 @@
 <div class="contenedorChat">
     <h2>Compra {{this.code}} realizada  con éxito </h2>
     <p>Se enviará un mail con el detalle de seguimiento de la compra</p>
+    {{#each products}}
+    <p><strong>{{this.id_product.title}}</strong> ------  cantidad: {{this.quantity}}</p>
+    {{/each}}
+    <p><strong> Total: ${{this.amount}}</strong></p>
     <button type="button" class="btn btn-primary btn-sm" onclick="location.href='/api/products'" >Volver</button>
 </div>

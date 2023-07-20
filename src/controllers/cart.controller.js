@@ -216,7 +216,7 @@ export const getPurchase = async (req, res) =>{
 
         await cartsService.updateCart(cid, cart);
 
-        res.render('checkout', {code: newTicket.code})
+        res.render('checkout', {code: newTicket.code, products: productsPurchase, amount: newTicket.amount});
     }
     catch(err){
         res.send({error: err});
