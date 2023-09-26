@@ -4,7 +4,7 @@ export default class userResponse{
         this.last_name = obj.last_name;
         this.email = obj.email;
         this.age = obj.age;
-        this.isAdmin = obj.isAdmin;
+        this.role = obj.role;
         this.cart = obj.cart;
     }
 }

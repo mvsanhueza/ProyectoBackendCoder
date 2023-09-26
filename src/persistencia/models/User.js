@@ -23,9 +23,10 @@ const usersSchema = new Schema({
         type: String,
         required: true,
     },
-    isAdmin: {
-        type: Boolean,
-        default: false,
+    role: {
+        type: String,
+        enum: ['user', 'premium', 'admin'],
+        default: 'user',
     },
     externalLogin: {
         type: Boolean,
@@ -40,6 +41,20 @@ const usersSchema = new Schema({
             },
         },
         default: null,
+    },
+    documents: {
+        type: [
+            {
+                _id: false,
+                name: String,
+                reference: String,
+            }
+        ],
+        default: [],
+    },
+    last_connection: {
+        type: Date,
+        default: Date.now(),
     },
     githubId: String,
     googleId: String,

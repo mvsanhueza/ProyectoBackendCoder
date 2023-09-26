@@ -34,27 +34,30 @@ passport.use('login', new LocalStrategy(
             const user = await usersService.findUser({ email, externalLogin: false });
 
             if (!user) {
+                req.logger.warning('Usuario no encontrado')
                 return done(null, false);
             }
 
             const isSuperAdminPasswordValid = await compareData(password, config.admin_password);
             //Se analiza si es superAdmin:
             if(isSuperAdminPasswordValid && email === config.admin_email){
-                user.isAdmin = true;
+                user.role = 'admin';
             }
-            else {
-                user.isAdmin = false;
+            else if (user.role === 'admin'){
+                user.role = 'user';
             }
-
+            
             const isPasswordValid = await compareData(password, user.password);
             if (!isPasswordValid) {
+                req.logger.debug('Contraseña incorrecta')
                 return done(null, false);
             }           
 
             done(null, user);
         }
         catch (error) {
-            done(error);
+            req.logger.error(error.message);
+            done(error);            
         }
     }
 ))

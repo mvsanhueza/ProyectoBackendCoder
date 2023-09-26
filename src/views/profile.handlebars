@@ -1,0 +1,135 @@
+{{>navbar user=this.user}}
+<div class="container-sm py-5">
+    <div class="row card">
+        <div class="card-body">
+            <div class="col">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0"> Nombre:</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="mb-0"> {{this.user.first_name}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0"> Apellido:</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="mb-0"> {{this.user.last_name}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0"> Email:</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="mb-0"> {{this.user.email}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <p class="mb-0"> Rol:</p>
+                    </div>
+                    <div class="col-sm-9">
+                        <p class="mb-0"> {{this.user.role}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+    <div class="row card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <form method="post" action="/api/users/{{this.user._id}}/documents" enctype="multipart/form-data">
+                        <div class="row align-items-center">
+                            <div class="col-3">
+                                <p class="mb-0">Imagen de perfil</p>
+                            </div>
+                            <div class="col-7">
+                                <input type="text" name="filetype" value="profileImg" class="d-none">
+                                <input type="file" name="file" class="form-control">
+                            </div>
+                            <div class="col-2"> 
+                                <input type="submit" value="Subir" class="btn btn-primary btn-sm">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <form method="post" action="/api/users/{{this.user._id}}/documents" enctype="multipart/form-data">
+                        <div class="row align-items-center">
+                            <div class="col-3">
+                                <p class="mb-0">Productos</p>
+                            </div>
+                            <div class="col-7">
+                                <input type="text" name="filetype" value="products" class="d-none">
+                                <input type="file" name="file" class="form-control">
+                            </div>
+                            <div class="col-2"> 
+                                <input type="submit" value="Subir" class="btn btn-primary btn-sm">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <form method="post" action="/api/users/{{this.user._id}}/documents" enctype="multipart/form-data">
+                        <div class="row align-items-center">
+                            <div class="col-3">
+                                <p class="mb-0">Identificación</p>
+                            </div>
+                            <div class="col-7">
+                                <input type="text" name="filetype" value="docId" class="d-none">
+                                <input type="file" name="file" class="form-control">
+                            </div>
+                            <div class="col-2"> 
+                                <input type="submit" value="Subir" class="btn btn-primary btn-sm">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <form method="post" action="/api/users/{{this.user._id}}/documents" enctype="multipart/form-data">
+                        <div class="row align-items-center">
+                            <div class="col-3">
+                                <p class="mb-0">Comprobante de domicilio</p>
+                            </div>
+                            <div class="col-7">
+                                <input type="text" name="filetype" value="docAddress" class="d-none">
+                                <input type="file" name="file" class="form-control">
+                            </div>
+                            <div class="col-2"> 
+                                <input type="submit" value="Subir" class="btn btn-primary btn-sm">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <form method="post" action="/api/users/{{this.user._id}}/documents" enctype="multipart/form-data">
+                        <div class="row align-items-center">
+                            <div class="col-3">
+                                <p class="mb-0">Comprobante de estado de cuenta</p>
+                            </div>
+                            <div class="col-7">
+                                <input type="text" name="filetype" value="docAccountState" class="d-none">
+                                <input type="file" name="file" class="form-control">
+                            </div>
+                            <div class="col-2"> 
+                                <input type="submit" value="Subir" class="btn btn-primary btn-sm">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getProductById, getProducts, createProduct, updateProduct, deleteProduct } from "../controllers/product.controller.js";
+import { getProductById, getProducts, createProduct, updateProduct, deleteProduct, mockingProduct } from "../controllers/product.controller.js";
 import { autorization } from "../middlewares/autorization.js";
 
 
@@ -7,6 +7,8 @@ import { autorization } from "../middlewares/autorization.js";
 
 const productRouter = Router();
 
+
+productRouter.get('/mockingproducts', mockingProduct)
 productRouter.get('/', getProducts);
 // productRouter.get('/realtimeproducts', async (req, res)=>{
 //     const products = await productManager.getProducts();
@@ -28,8 +30,9 @@ productRouter.get('/', getProducts);
 //     res.render('realTimeProducts', {products});
 // })
 productRouter.get('/:id', getProductById);
-productRouter.post('/', autorization(true), createProduct);
-productRouter.put('/:id', autorization(true), updateProduct)
-productRouter.delete('/:id', autorization(true), deleteProduct);
+productRouter.post('/', autorization(['admin', 'premium']), createProduct);
+productRouter.put('/:id', autorization(['admin', 'premium']), updateProduct)
+productRouter.delete('/:id', autorization(['admin', 'premium']), deleteProduct);
+
 
 export default productRouter;

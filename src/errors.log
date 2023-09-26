@@ -1,0 +1,206 @@
+2023-08-01 19:52:53  error : Error message
+2023-08-01 19:52:53  fatal : Fatal message
+2023-08-01 19:53:33  error : Error message
+2023-08-01 19:53:33  fatal : Fatal message
+2023-08-01 19:53:53  error : Error message
+2023-08-01 19:53:53  fatal : Fatal message
+2023-08-01 19:56:52  error : Error message
+2023-08-01 19:56:52  fatal : Fatal message
+2023-08-01 19:57:19  error : Error message
+2023-08-01 19:57:19  fatal : Fatal message
+2023-08-01 19:58:14  error : Error message
+2023-08-01 19:58:14  fatal : Fatal message
+2023-08-01 19:58:52  error : Error message
+2023-08-01 19:58:53  fatal : Fatal message
+2023-08-01 19:59:14  error : Error message
+2023-08-01 19:59:14  fatal : Fatal message
+2023-08-01 19:59:31  error : Error message
+2023-08-01 19:59:31  fatal : Fatal message
+2023-08-01 20:00:59  error : Error message
+2023-08-01 20:00:59  fatal : Fatal message
+2023-08-01 20:02:08  error : Error message
+2023-08-01 20:02:08  fatal : Fatal message
+2023-08-01 20:02:15  error : Error message
+2023-08-01 20:02:15  fatal : Fatal message
+2023-08-14 20:55:13  error : Error al obtener los productos del carrito: ENUM_Errors is not defined
+2023-08-14 20:56:38  error : Error al actualizar contraseña del usuario: ENUM_Errors is not defined
+2023-08-14 20:57:28  error : Error al actualizar contraseña del usuario: La contraseña es igual a la anterior
+2023-08-14 20:58:19  error : Error al actualizar contraseña del usuario: La contraseña es igual a la anterior
+2023-08-14 20:59:15  error : Error al actualizar contraseña del usuario: La contraseña es igual a la anterior
+2023-08-14 20:59:21  error : Error al actualizar contraseña del usuario: La contraseña es igual a la anterior
+2023-08-14 20:59:30  error : Error al actualizar contraseña del usuario: La contraseña es igual a la anterior
+2023-08-14 20:59:57  error : Error al actualizar contraseña del usuario: La contraseña es igual a la anterior
+2023-08-14 21:00:15  error : Error al actualizar contraseña del usuario: La contraseña es igual a la anterior
+2023-08-14 21:00:22  error : Error al actualizar contraseña del usuario: usersService.updateUserPassword is not a function
+2023-08-14 21:01:23  error : Error al actualizar contraseña del usuario: La contraseña es igual a la anterior
+2023-08-14 21:01:47  error : Error al cargar productos: intPage is not defined
+2023-08-14 21:18:52  error : Error al cargar productos: intPage is not defined
+2023-08-14 21:36:37  error : Error al crear productoError al crear el producto
+2023-08-14 22:02:06  error : Usuario no encontrado en la base de datosCannot read properties of undefined (reading 'role')
+2023-08-14 22:02:36  error : Usuario no encontrado en la base de datosCannot read properties of undefined (reading 'role')
+2023-08-14 22:03:00  error : Usuario no encontrado en la base de datosCannot read properties of undefined (reading 'role')
+2023-08-14 22:03:32  error : Usuario no encontrado en la base de datosCannot read properties of undefined (reading 'role')
+2023-08-14 22:03:57  error : Usuario no encontrado en la base de datosCannot read properties of undefined (reading 'role')
+2023-08-29 21:11:44  error : Error al crear productoError al crear el producto
+2023-08-29 21:16:32  error : Error al crear productoError al crear el producto
+2023-08-29 21:21:46  error : Error al crear productoError al crear el producto
+2023-08-29 21:22:28  error : Error al crear productoError al crear el producto
+2023-08-29 21:27:05  error : Error al crear productoError al crear el producto
+2023-08-29 21:28:50  error : Error al crear productoError al crear el producto
+2023-08-29 21:30:17  error : Error al crear productoError al crear el producto
+2023-08-29 21:31:09  error : Error al crear productoError al crear el producto
+2023-08-29 21:32:20  error : Error al crear productoError al crear el producto
+2023-08-29 21:33:36  error : Error al crear productoError al crear el producto
+2023-08-29 21:39:42  error : Error al crear productoError al crear el producto
+2023-08-29 21:40:11  error : Error al crear productoError al crear el producto
+2023-08-29 21:41:03  error : Error al crear productoError al crear el producto
+2023-08-29 21:42:42  error : Error al crear productoError al crear el producto
+2023-08-29 21:43:09  error : Error al crear productoError al crear el producto
+2023-08-29 21:43:33  error : Error al crear productoError al crear el producto
+2023-08-29 21:45:03  error : Error al crear productoError al crear el producto
+2023-08-29 21:45:04  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 21:50:56  error : Error al crear productoError al crear el producto
+2023-08-29 21:50:58  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 21:51:43  error : Error al crear productoError al crear el producto
+2023-08-29 21:51:45  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 21:53:05  error : Error al crear productoError al crear el producto
+2023-08-29 21:53:06  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 21:54:51  error : Error al crear productoError al crear el producto
+2023-08-29 21:54:53  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 21:55:37  error : Error al crear productoError al crear el producto
+2023-08-29 21:55:38  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:20:31  error : Error al crear productoError al crear el producto
+2023-08-29 22:20:32  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:21:10  error : Error al crear productoError al crear el producto
+2023-08-29 22:21:12  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:23:57  error : Error al crear productoError al crear el producto
+2023-08-29 22:23:58  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:25:42  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:25:42  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:25:43  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:25:44  error : Error al crear productoError al crear el producto
+2023-08-29 22:25:45  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:27:03  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:27:03  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:27:03  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:27:04  error : Error al crear productoError al crear el producto
+2023-08-29 22:27:05  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:27:34  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:27:34  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:27:36  error : Error al crear productoError al crear el producto
+2023-08-29 22:27:37  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:28:20  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:28:20  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:28:21  error : Error al crear productoError al crear el producto
+2023-08-29 22:28:23  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:28:46  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:28:46  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:28:48  error : Error al crear productoError al crear el producto
+2023-08-29 22:28:49  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:29:37  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:29:37  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:29:38  error : Error al crear productoError al crear el producto
+2023-08-29 22:29:40  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:31:06  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:31:06  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:31:07  error : Error al crear productoError al crear el producto
+2023-08-29 22:31:09  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:31:38  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:31:39  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:31:40  error : Error al crear productoError al crear el producto
+2023-08-29 22:31:42  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:31:58  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:31:59  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:32:00  error : Error al crear productoError al crear el producto
+2023-08-29 22:32:02  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:32:57  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:32:58  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:32:59  error : Error al crear productoError al crear el producto
+2023-08-29 22:33:01  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:33:45  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:33:45  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:33:47  error : Error al crear productoError al crear el producto
+2023-08-29 22:33:48  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:34:01  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:34:02  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:34:03  error : Error al crear productoError al crear el producto
+2023-08-29 22:34:05  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:34:18  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:34:18  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:34:20  error : Error al crear productoError al crear el producto
+2023-08-29 22:34:21  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:34:56  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:34:56  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:34:58  error : Error al crear productoError al crear el producto
+2023-08-29 22:34:59  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:36:49  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:36:50  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:36:51  error : Error al crear productoError al crear el producto
+2023-08-29 22:36:53  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:37:27  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:37:27  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:37:29  error : Error al crear productoError al crear el producto
+2023-08-29 22:37:30  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:39:42  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:39:43  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:39:45  error : Error al crear productoError al crear el producto
+2023-08-29 22:39:46  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:40:28  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:40:28  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:40:30  error : Error al crear productoError al crear el producto
+2023-08-29 22:40:31  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:40:45  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:40:45  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:40:47  error : Error al crear productoError al crear el producto
+2023-08-29 22:40:48  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:40:59  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:40:59  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:41:01  error : Error al crear productoError al crear el producto
+2023-08-29 22:41:03  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:41:40  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:41:40  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:41:42  error : Error al crear productoError al crear el producto
+2023-08-29 22:41:43  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:43:09  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:43:10  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:43:11  error : Error al crear productoError al crear el producto
+2023-08-29 22:43:13  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:44:26  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:44:26  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:44:28  error : Error al crear productoError al crear el producto
+2023-08-29 22:44:29  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:45:04  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:45:04  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:45:06  error : Error al crear productoError al crear el producto
+2023-08-29 22:45:07  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:47:52  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:47:52  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:47:54  error : Error al crear productoError al crear el producto
+2023-08-29 22:47:56  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:48:18  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:48:18  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:48:20  error : Error al crear productoError al crear el producto
+2023-08-29 22:48:22  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:48:42  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:48:42  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:48:44  error : Error al crear productoError al crear el producto
+2023-08-29 22:48:46  error : Error al actualizar el productoError al actualizar el producto
+2023-08-29 22:48:59  error : Error al agregar producto al carrito: El carrito no existe en la base de datos
+2023-08-29 22:48:59  error : Error al agregar producto al carrito: El producto no existe en la base de datos
+2023-08-29 22:49:01  error : Error al crear productoError al crear el producto
+2023-08-29 22:49:03  error : Error al actualizar el productoError al actualizar el producto
+2023-09-10 21:10:20  error : Error en upload: ENUM_Errors is not defined
+2023-09-10 21:22:35  error : Error en upload: Cannot access 'body' before initialization
+2023-09-10 21:42:45  error : Error en upload: Error en upload documento
+2023-09-10 21:42:57  error : Error en upload: Error en upload documento
+2023-09-10 21:43:31  error : Error en upload: Error en upload documento
+2023-09-10 21:44:01  error : Error en upload: Error en upload documento
+2023-09-10 21:44:11  error : Error en upload: Error en upload documento
+2023-09-10 21:44:38  error : Error en upload: Cannot read properties of undefined (reading 'error')
+2023-09-10 22:00:37  error : Usuario no encontrado en la base de datosEl usuario no existe en la base de datos
+2023-09-10 22:03:01  error : Usuario no encontrado en la base de datosEl usuario no existe en la base de datos
+2023-09-10 22:03:24  error : Usuario no encontrado en la base de datosEl usuario no existe en la base de datos
+2023-09-10 22:04:43  error : Error en upload: Error en upload documento
+2023-09-10 22:05:04  error : Usuario no encontrado en la base de datosRequiere documentación de identifiación, domicilio y estado de cuenta para ser usuario premium
+2023-09-10 22:05:18  error : Error en upload: Error en upload documento
+2023-09-10 22:05:31  error : Error en upload: Error en upload documento

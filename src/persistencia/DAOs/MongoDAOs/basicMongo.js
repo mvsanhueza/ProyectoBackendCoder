@@ -18,7 +18,7 @@ export default class BasicMongo {
             return response;
         }
         catch(error){
-            return error;
+            return null;
         }
     }
     async findOne(obj){
@@ -27,7 +27,7 @@ export default class BasicMongo {
             return response;
         }
         catch(error){
-            return error;
+            return null;
         }
     }
     async createOne(obj){

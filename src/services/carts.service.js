@@ -43,7 +43,7 @@ class CartsService {
             return response;
         }
         catch(error){
-            return error;
+            return null;
         }
     }
 }

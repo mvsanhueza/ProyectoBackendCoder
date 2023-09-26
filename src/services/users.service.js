@@ -41,11 +41,34 @@ class UsersService{
             const cartUser = await cartsService.createCart();
             userHashed.cart = {id_cart: cartUser._id}          
             const userDB = new userDBDTO(userHashed);
+            console.log(obj);
             const newUser = await usersMongo.createOne(userDB);
             return newUser;
         }
         catch(error){
             return error;
+        }
+    }
+    async updateUser(id, obj){
+        try{
+            const user = await usersMongo.updateOne(id, obj);
+            return user;
+        }
+        catch(error){
+            return error;
+        }
+    }
+    
+    async uploadDocument(id, docName, file){
+        try{
+            const filePath = file.destination.split('src')[1];
+            const response = await usersMongo.uploadDocument(id, docName, filePath);
+            if(response){
+                return response
+            }
+        }
+        catch(error){
+            return {error: error}
         }
     }
 }

@@ -4,6 +4,6 @@ import { autorization } from "../middlewares/autorization.js";
 
 const chatRouter = Router();
 
-chatRouter.get('/', autorization(false), getMessages);
+chatRouter.get('/', autorization(['user', 'premium']), getMessages);
 
 export default chatRouter;

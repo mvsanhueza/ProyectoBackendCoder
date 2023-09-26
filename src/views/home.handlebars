@@ -1,56 +1,55 @@
-<div class="contenedorHome">
-    <div class="userInfo">
-        <p>Bienvenido {{this.session.first_name}} {{this.session.last_name}}</p>
-        <button class="btn btn-primary btn-sm" onclick="location.href='/api/sessions/logout'"> Cerrar sesión</button>
-        <button class="btn btn-primary btn-sm" onclick='goToCart_Click()'> Carrito</button>
+{{!-- <div class="userInfo">
+    <p>Bienvenido {{this.session.first_name}} {{this.session.last_name}}</p>
+    <button class="btn btn-primary btn-sm" onclick="location.href='/api/sessions/logout'"> Cerrar sesión</button>
+    <button class="btn btn-primary btn-sm" onclick='goToCart_Click()'> Carrito</button>
+</div> --}}
+{{>navbar user=this.session}}
+<div class="contenedorProduct">
+    {{#each this.result.payload}}
+    <div class="product">
+        <p class="product_title"><strong>{{this.title}}</strong></p>
+        <p><strong>Descripción: </strong>{{this.description}}</p>
+        <p><strong>Code: </strong>{{this.code}}</p>
+        <p><strong>Precio: </strong>{{this.price}}</p>
+        <p><strong>Estado: </strong>{{this.status}}</p>
+        <p><strong>Stock: </strong>{{this.stock}}</p>
+        <p><strong>Categoría: </strong>{{this.category}}</p>
+        <button type="button" class="btn btn-primary btn-sm" onclick="addToCart_Click(this)" id={{this._id}}>Añadir al
+            carrito</button>
     </div>
-    <div class="contenedorProduct">
-        {{#each this.result.payload}}
-        <div class="product">
-            <p class="product_title"><strong>{{this.title}}</strong></p>
-            <p><strong>Descripción: </strong>{{this.description}}</p>
-            <p><strong>Code: </strong>{{this.code}}</p>
-            <p><strong>Precio: </strong>{{this.price}}</p>
-            <p><strong>Estado: </strong>{{this.status}}</p>
-            <p><strong>Stock: </strong>{{this.stock}}</p>
-            <p><strong>Categoría: </strong>{{this.category}}</p>
-            <button type="button" class="btn btn-primary btn-sm" onclick="addToCart_Click(this)" id={{this._id}}>Añadir al carrito</button>
-        </div>
-        {{/each}}
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                {{#if this.result.hasPrevPage}}
-                <li class="page-item">        
+    {{/each}}
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            {{#if this.result.hasPrevPage}}
+            <li class="page-item">
                 <a class="page-link" href={{this.result.prevLink}} aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
-                </a>        
-                </li>
-                <li class="page-item"><a class="page-link" href={{this.result.prevLink}}>{{this.result.prevPage}}</a></li>        
-                {{else}}
-                    <li class="page-item disabled">        
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>        
-                    </li>
-                {{/if}}
-                <li class="page-item active"><a class="page-link" href="">{{this.result.page}}</a></li>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href={{this.result.prevLink}}>{{this.result.prevPage}}</a></li>
+            {{else}}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {{/if}}
+            <li class="page-item active"><a class="page-link" href="">{{this.result.page}}</a></li>
 
-                {{#if this.result.hasNextPage}}
-                    <li class="page-item"><a class="page-link" href={{this.result.nextLink}}>{{this.result.nextPage}}</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href={{this.result.nextLink}} aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>                
-                        </a>
-                    </li>
-                {{else}}
-                    <li class="page-item">
-                        <a class="page-link disabled" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>                
-                        </a>
-                    </li>
-                {{/if}}
-            </ul>
-        </nav>
-    </div>
+            {{#if this.result.hasNextPage}}
+            <li class="page-item"><a class="page-link" href={{this.result.nextLink}}>{{this.result.nextPage}}</a></li>
+            <li class="page-item">
+                <a class="page-link" href={{this.result.nextLink}} aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {{else}}
+            <li class="page-item">
+                <a class="page-link disabled" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {{/if}}
+        </ul>
+    </nav>
 </div>
-

@@ -5,7 +5,7 @@ export default class userDBDTO {
         this.email = userObj.email;
         this.age = userObj.age;
         this.password = userObj.password;
-        this.isAdmin = userObj.isAdmin || false;
+        this.role = userObj.role || 'user';
         this.externalLogin = userObj.externalLogin || false;
         this.githubId = userObj.githubId || null;
         this.googleId = userObj.googleId || null;

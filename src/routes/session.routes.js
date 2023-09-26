@@ -1,6 +1,6 @@
 import { Router } from "express";
 import passport from "passport";
-import { currentUser, logout, signup } from "../controllers/session.controller.js";
+import { autorizationUserRestore, currentUser, logout, sendRecoverPassword, signup} from "../controllers/session.controller.js";
 
 const routerSession = Router();
 
@@ -26,6 +26,9 @@ routerSession.post('/login', passport.authenticate('login', { failureRedirect: '
 
 routerSession.post('/signup', signup);
 
+routerSession.post('/sendRecoverPassword', sendRecoverPassword);
+
+routerSession.get('/recoverPassword/:uid/:token', autorizationUserRestore);
 routerSession.get('/logout', logout);
 
 routerSession.get('/current', currentUser);

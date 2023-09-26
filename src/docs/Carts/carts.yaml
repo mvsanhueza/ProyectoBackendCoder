@@ -1,0 +1,218 @@
+paths:
+  /api/carts:
+    post: 
+      summary: Crea un carrito
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Si la creación del carrito es satisfactoria.
+          content: 
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Carts"
+        "500":
+          description: Si ocurre un error al crear el carrito.
+          
+  /api/carts/{cid}/products/{pid}:
+    post: 
+      summary: Agrega un producto al carrito, exclusivos para usuarios user y premium que no sean owner del producto
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          schema: 
+            type: string
+          description: ID del carrito
+        - in: path
+          name: pid
+          schema: 
+            type: string
+          description: ID del producto
+      requestBody:
+        decription: cantidad del producto a agregar
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: number
+                  description: Cantidad del Producto
+      responses:
+        "200":
+          description: Si la creación del carrito es satisfactoria.
+        "403":
+          description: No presenta permisos para realizar la acción
+        "500":
+          description: Si ocurre un error al crear el carrito.
+    put: 
+      summary: actualiza la cantidad de un producto en el carrito.
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          schema: 
+            type: string
+          description: ID del carrito
+        - in: path
+          name: pid
+          schema: 
+            type: string
+          description: ID del producto
+      requestBody:
+        decription: cantidad del producto a agregar
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: number
+                  description: Cantidad del Producto
+      responses:
+        "200":
+          description: Si la creación del carrito es satisfactoria.
+        "500":
+          description: Si ocurre un error al crear el carrito.
+    delete: 
+      summary: Elimina un producto del carrito
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          schema: 
+            type: string
+          description: ID del carrito
+        - in: path
+          name: pid
+          schema: 
+            type: string
+          description: ID del producto
+      responses:
+        "200":
+          description: Si la eliminación del producto en el carrito es satisfactoria.
+        "500":
+          description: Si ocurre un error eliminar el producto en el carrito.
+
+  /api/carts/{cid}:
+    get: 
+      summary: Obtiene los productos del carrito
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          schema: 
+            type: string
+          description: ID del carrito
+      responses:
+        "200":
+          description: Si la obtención de los productos del carrito es satisfactoria.
+          content: 
+            application/json:
+              schema: 
+                type: array
+                items:
+                  $ref: "#/components/schemas/Products"
+        "500":
+          description: Si ocurre un error al obtener los productos del carrito.
+    put:  
+      summary: Actualiza los productos del carrito
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          schema: 
+            type: string
+          description: ID del carrito
+      requestBody:
+        description: Productos a actualizar
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  products: 
+                    type: array
+                    items:              
+                      type: object
+                      properties: 
+                        quantity:
+                          type: number
+                          description: Cantidad del Producto
+                        product:
+                          type: string
+                          description: ID del Producto
+      responses:
+        "200":
+          description: Si la actualización de los productos del carrito es satisfactoria.
+        "500":
+          description: Si ocurre un error al actualizar los productos del carrito.
+    delete: 
+      summary: Elimina todos los productos del carrito
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          schema: 
+            type: string
+          description: ID del carrito
+      responses:
+        "200":
+          description: Si la eliminación de los productos del carrito es satisfactoria.
+        "500":
+          description: Si ocurre un error al eliminar los productos del carrito.
+  
+  /api/carts/{cid}/purchase:
+    summary: Realiza la compra de los productos del carrito
+    tags:
+      - Carts
+    parameters:
+      - in: path
+        name: cid
+        schema: 
+          type: string
+        description: ID del carrito
+    responses:
+      "200": 
+        description: genera ticket de compra y realiza el chockout
+      "400":
+        description: No hay productos suficientes para realizar la compra
+      "500":
+        description: Si ocurre un error al realizar la compra del carrito.
+
+components:
+  schemas:  
+    Carts:
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: ID auto incrementable de mongo
+        products: 
+          type: array
+          items:              
+            type: object
+            properties: 
+              quantity:
+                type: number
+                description: Cantidad del Producto
+              product:
+                type: string
+                description: ID del Producto
+      example:
+        - quantity: 1
+          product: 5f9d7b3b9d3b3b2b4c7b3b3b
+        - quantity: 2
+          product: 5f9d7b3b9d3b3b2b4c7b3b3b
+

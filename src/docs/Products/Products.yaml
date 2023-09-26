@@ -1,0 +1,229 @@
+paths:
+  /api/products: 
+    post:
+      summary: Crear un producto en la BD, exclusivo para admin y usuarios premium
+      tags:
+        - Products
+      requestBody:
+        description: Producto a crear
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Products"
+      responses:
+        "200":  
+          description: Si la creación del producto es satisfactoria.          
+        "500":
+          description: Si ocurre un error al crear el producto.
+
+  /api/products?limit=10&page=1&sort=asc&query=query: 
+    get: 
+      parameters:
+        - in: query
+          name: limit
+          schema: 
+            type: number
+          description: Cantidad de productos por página
+        - in: query
+          name: page
+          schema: 
+            type: number
+          description: Página actual
+        - in: query
+          name: sort
+          schema: 
+            type: string
+          description: Orden de los productos, asc o desc
+        - in: query
+          name: query
+          schema: 
+            type: string
+          description: Limitar búsqueda por parámetro del esquema de products
+      summary: Obtener los productos de la BD.
+      tags:
+        - Products
+      responses: 
+        "200":
+          description: Si la consulta a los productos es satisfactoria.
+          content: 
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/ProductsResponse"
+        "500":
+          description: Si ocurre un error al consultar los productos.
+          content: 
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/ProductsResponse"
+
+  /api/products/{id}:
+    get: 
+      parameters:
+        - in: path
+          name: id
+          schema: 
+            type: string
+          description: ID del producto
+      summary: Obtener un producto de la BD por Id
+      tags:
+        - Products
+      responses: 
+        "200":
+          description: Si la consulta al producto es satisfactoria.
+          content: 
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Products"
+        "500":
+          description: Si ocurre un error al consultar el producto.
+          content: 
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Products"
+    put: 
+      parameters:
+        - in: path
+          name: id
+          schema: 
+            type: string
+          description: ID del producto
+      summary: Actualizar un producto de la BD por Id, exclusivo para admin y usuarios owner del producto
+      tags:
+        - Products
+      requestBody:
+        description: Producto a actualizar
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Products"
+      responses:
+        "200":  
+          description: Si la actualización del producto es satisfactoria.
+          content: 
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Products"
+        "500":
+          description: Si ocurre un error al actualizar el producto.         
+    delete: 
+      parameters:
+        - in: path
+          name: id
+          schema: 
+            type: string
+          description: ID del producto
+      summary: Eliminar un producto de la BD por Id, exclusivo para admin y usuarios owner del producto
+      tags:
+        - Products
+      responses:
+        "200":  
+          description: Si la eliminación del producto es satisfactoria.
+          content: 
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Products"
+        "500":
+          description: Si ocurre un error al eliminar el producto.
+
+  /api/products/mockingproducts: 
+    get:  
+      summary: Crear 100 productos de prueba
+      tags:
+        - Products
+      responses:
+        "200":  
+          description: Si la creación de los productos es satisfactoria.      
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Products"
+        "500":
+          description: Si ocurre un error al crear los productos.
+
+
+components:
+  schemas:
+    Products: 
+      type: object
+      properties: 
+        _id: 
+          type: ObjectId
+          description: ID auto incrementable de mongo
+        title:
+          type: string
+          description: Nombre del producto
+        description:
+          type: string
+          description: Descripción del producto
+        code:
+          type: string
+          description: Código del producto
+        category:
+          type: string
+          description: Categoría del producto
+        price:
+          type: number
+          description: Precio del producto
+        stock:
+          type: number
+          description: Stock del producto
+        status:
+          type: boolean
+          description: Estado del producto
+        owner:
+          type: string
+          description: Email del Creador del producto o admin
+        thumbnails:
+          type: array
+          description: Imagenes del producto
+      example: 
+        _id: ObjectId(123dfasfa)
+        title: "Pantalla LG 27''"
+        description: "Pantalla LG 27'' 4K"
+        code: "LG-27-4K"
+        category: "Monitores"
+        price: 150000
+        stock: 29
+        status: true
+        owner: "admin"
+        thumbnails: ["imagen1.jpg"]
+
+    ProductsResponse: 
+      type: object  
+      properties: 
+        status: 
+          type: String
+          description: Estado de la respuesta, error o success
+        payload:
+          type: array
+          description: Productos según página definida
+          items: 
+            $ref: "#/components/schemas/Products"
+        totalPages: 
+          type: number
+          description: Total de páginas de productos en la BD
+        prevPage: 
+          type: number
+          description: Página anterior a la actual
+        nextPage: 
+          type: number
+          description: Página siguiente a la actual
+        page:
+          type: number
+          description: Página actual
+        hasPrevPage: 
+          type: boolean
+          description: Si existe una página anterior a la actual
+        hasNextPage: 
+          type: boolean
+          description: Si existe una página siguiente a la actual
+        prevLink: 
+          type: string
+          description: Link a la página anterior a la actual
+        nextLink: 
+          type: string
+          description: Link a la página siguiente a la actual
+
+
