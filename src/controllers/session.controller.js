@@ -20,13 +20,19 @@ export const signup = async (req, res) => {
 }
 
 export const logout = async (req, res) => {
-    req.session.destroy(error => {
+    const user = req.user;
+    req.session.destroy(async (error) => {
         if (error) {
             req.logger.error('Error al cerrar sesión: ' + error.message);
             res.send(error);
         }
         else {
             res.redirect('/api')
+
+            //Se actualiza el last_connection:
+            user.last_connection = new Date();
+            await usersService.updateUser(user._id, user);
+
             req.logger.debug('Sesión cerrada correctamente');
         }
     });

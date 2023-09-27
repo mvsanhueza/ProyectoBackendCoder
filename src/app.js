@@ -31,6 +31,9 @@ app.engine('handlebars', engine({
     helpers: {
         first: (string) =>{
             return string.slice(0,1);
+        },
+        isAdmin: (role, options) =>{
+            return role === "admin" ? options.fn(this) : options.inverse(this)
         }
     }
 }));
@@ -57,6 +60,19 @@ app.use(session({
     saveUninitialized: false,
 }));
 
+//Servidor
+const httpServer = app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
+//Server io:
+const io = new Server(httpServer, { cors: { origin: '*' } });
+app.use((req, res, next) => {
+    //Uso de socket en rutas:
+    req.io = io;
+    return next();
+})
+
 
 //Passport:
 app.use(passport.initialize());
@@ -78,15 +94,3 @@ app.use('/', express.static(path.resolve(__dirname, './public')));
 //Errores, siempre al final según expressjs.com
 app.use(errorHandler);
 
-//Servidor
-const httpServer = app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
-
-//Server io:
-const io = new Server(httpServer, { cors: { origin: '*' } });
-app.use((req, res, next) => {
-    //Uso de socket en rutas:
-    req.io = io;
-    return next();
-})

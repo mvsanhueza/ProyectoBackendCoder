@@ -1,0 +1,15 @@
+{{>navbar user=this.session}}
+<div class="container-sm d-flex flex-column justify-content-center py-5 gap-3">
+    {{#each this.users}}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{this.email}}</h5>
+            <p class="card-text"><strong> Nombre: </strong> {{this.first_name}}</p>
+            <p class="card-text"><strong> Apellido: </strong> {{this.last_name}}</p>
+            <p class="card-text"><strong> Rol: </strong> {{this.role}}</p>
+            <a class="btn btn-primary btn-sm" href="premium/{{this._id}}">Modificar Rol</a>
+            <a class="btn btn-primary btn-sm" onclick="deleteUser_Click('{{this._id}}')">Eliminar</a>            
+        </div>
+    </div>
+    {{/each}}
+</div>

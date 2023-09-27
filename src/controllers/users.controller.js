@@ -3,6 +3,8 @@ import usersService from "../services/users.service.js";
 import { compareData, hashData } from '../utils/utils.js';
 import { generateUserUpdateError } from "../services/errors/info.js";
 import ENUM_Errors from "../services/errors/enums.js";
+import userResponse from "../persistencia/DTOs/userResponse.dto.js";
+import { transporter } from "../utils/nodemailer.js";
 
 
 class usersController {
@@ -125,6 +127,91 @@ class usersController {
             next();
         }
     }
+
+    async getUsers(req, res, next) {
+        try {
+            const users = await usersService.findAllUsers();
+
+            const usersResponse = users.map(u => new userResponse(u));
+
+            res.status(200).send(usersResponse);
+        }
+        catch (error) {
+            req.logger.error('Error al obtener usuarios: ' + error.message);
+            next();
+        }
+    }
+
+    async getUsersEdit(req,res,next){
+        try {
+            const users = await usersService.findAllUsers();
+            //Se filtra el usuario conectado (se supone admin)
+            const usersFilter = users.filter(u => u.email != req.user.email);
+            res.render('users',{session: req.user, users: usersFilter});
+        }
+        catch (error) {
+            req.logger.error('Error al obtener usuarios: ' + error.message);
+            next();
+        }
+    }
+
+    async deleteUsersUnconnected(req, res, next) {
+        try {
+            const users = await usersService.findAllUsers();
+            console.log(users);
+            for (let i = 0; i < users.length; i++){
+                const user = users[i];
+                console.log(user);
+                if (user.role === 'admin')
+                    continue;
+
+                //Se verifica conexión de 2 dias:
+                const diffConnection = new Date() - user.last_connection;
+                //milisegundos de un dia:
+                const milisecondsDay = 1000 * 60 * 60 * 24;                
+
+                if (diffConnection / milisecondsDay < 2.0)
+                    continue;
+
+                //En caso que sea superior a 2 dias se elimina el usuario:
+
+                const response = await usersService.deleteUser(user._id);
+
+                //Una vez eliminado se envia mail notificando:
+                //Se genera el texto html de email
+                let htmlMail = `<h2> Su cuenta ha sido eliminada por inactividad </h2>`;
+                htmlMail += `<h3> Esperamos verte pronto </h3>`;
+
+                //Se envía el mail con el ticket:
+                let email = await transporter.sendMail({
+                    to: user.email,
+                    subject: `Te extrañaremos`,
+                    html: htmlMail
+                });
+            }
+
+            res.status(200).send({message: "Usuarios inactivos eliminados"})
+        }
+        catch (error) {
+            req.logger.error('Error al eliminar usuarios inactivos: ' + error.message);
+            next();
+        }
+    }
+
+    async deleteUser(req,res,next){
+        try {
+            const {uid} = req.params;
+
+            await usersService.deleteUser(uid);
+
+            res.status(200).send({message: 'Usuario eliminado'});
+        }
+        catch (error) {
+            req.logger.error('Error al eliminar usuario: ' + error.message);
+            next();
+        }
+    }
+
 }
 
 export default new usersController();

@@ -71,6 +71,16 @@ class UsersService{
             return {error: error}
         }
     }
+
+    async deleteUser(id){
+        try{
+            const response = await usersMongo.deleteOne(id);
+            return response;
+        }
+        catch(error){
+            return {error: error};
+        }
+    }
 }
 
 const usersService = new UsersService();

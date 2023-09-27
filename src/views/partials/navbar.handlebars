@@ -19,6 +19,11 @@
                 <li class="nav-item align-self-center">
                     <a class="nav-link" onclick='goToCart_Click()'>Carrito</a>
                 </li>
+                {{#isAdmin user.role}}
+                <li class="nav-item align-self-center">
+                    <a class="nav-link" href='/api/users/edit'>Usuarios</a>
+                </li>
+                {{/isAdmin}}
                 <li class="nav-item align-self-center dropdown">
                     <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <button class="rounded-circle btn btn-outline-dark p-0 border-2 fw-semibold"
@@ -26,7 +31,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/api/profile">Perfil</a></li>
-                        <li><a class="dropdown-item" href="/api/sessions/logout">Cerrar Session</a></li>
+                        <li><a class="dropdown-item" href="/api/sessions/logout">Cerrar Sesión</a></li>
                     </ul>
                 </li>
             </ul>

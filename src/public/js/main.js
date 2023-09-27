@@ -57,7 +57,7 @@ const socket = io();
 
 const getCurrentUser = async () =>{
     try{
-        const responseUser = await fetch('http://localhost:8080/api/sessions/current');
+        const responseUser = await fetch('/api/sessions/current');
         const user = await responseUser.json();
         return user;
     }
@@ -70,7 +70,7 @@ async function goToCart_Click(){
     try{
         const user = await getCurrentUser();
         const cartId = user.cart.id_cart;
-        window.location.href = `http://localhost:8080/api/carts/${cartId}`;
+        window.location.href = `/api/carts/${cartId}`;
     }
     catch(error){
         console.log({error: error});
@@ -146,5 +146,11 @@ async function purchaseCart_Click(){
     const user = await getCurrentUser();
     const cartId = user.cart.id_cart;
 
-    window.location.href = `http://localhost:8080/api/carts/${cartId}/purchase`;
+    window.location.href = `/api/carts/${cartId}/purchase`;
+}
+
+async function deleteUser_Click(uid){  
+    console.log(uid);
+    const responseUser = await fetch(`/api/users/${uid}`, {method: 'DELETE'});
+    location.reload();
 }

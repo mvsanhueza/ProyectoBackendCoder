@@ -37,10 +37,8 @@ passport.use('login', new LocalStrategy(
                 req.logger.warning('Usuario no encontrado')
                 return done(null, false);
             }
-
-            const isSuperAdminPasswordValid = await compareData(password, config.admin_password);
             //Se analiza si es superAdmin:
-            if(isSuperAdminPasswordValid && email === config.admin_email){
+            if(password === config.admin_password && email === config.admin_email){
                 user.role = 'admin';
             }
             else if (user.role === 'admin'){
@@ -52,6 +50,11 @@ passport.use('login', new LocalStrategy(
                 req.logger.debug('Contraseña incorrecta')
                 return done(null, false);
             }           
+
+            //Se actualiza el last_connection:
+            user.last_connection = new Date();
+
+            await usersService.updateUser(user._id, user);
 
             done(null, user);
         }
@@ -75,6 +78,9 @@ passport.use('githubLogin', new GithubStrategy(
         try {
             const userDB = await usersService.findUser({ externalLogin: true, githubId: profile.id });
             if (userDB) {
+                //Se actualiza el last_connection:
+                userDB.last_connection = new Date();
+                await usersService.updateUser(userDB._id, userDB);
                 return done(null, userDB);
             }
 
@@ -140,10 +146,12 @@ passport.use('googleLogin', new GoogleStrategy(
     },
     async (accessToken, refreshToken, profile, done) => {
         const { name, email } = profile._json;
-        console.log(profile);
         try {
             const userDB = await usersService.findUser({ externalLogin: true, googleId: profile.id });
             if (userDB) {
+                //Se actualiza el last_connection:
+                userDB.last_connection = new Date();
+                await usersService.updateUser(userDB._id, userDB);
                 return done(null, userDB);
             }
 

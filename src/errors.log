@@ -204,3 +204,17 @@
 2023-09-10 22:05:04  error : Usuario no encontrado en la base de datosRequiere documentación de identifiación, domicilio y estado de cuenta para ser usuario premium
 2023-09-10 22:05:18  error : Error en upload: Error en upload documento
 2023-09-10 22:05:31  error : Error en upload: Error en upload documento
+2023-09-26 19:23:57  error : Error al eliminar usuarios inactivos: No recipients defined
+2023-09-26 19:24:25  error : Error al eliminar usuarios inactivos: No recipients defined
+2023-09-26 19:24:47  error : Error al eliminar usuarios inactivos: No recipients defined
+2023-09-26 19:40:40  error : Error al eliminar usuarios inactivos: No recipients defined
+2023-09-26 19:42:36  error : Error al eliminar usuarios inactivos: No recipients defined
+2023-09-26 19:42:54  error : Error al eliminar usuarios inactivos: No recipients defined
+2023-09-26 19:43:14  error : Error al eliminar usuarios inactivos: No recipients defined
+2023-09-26 19:43:34  error : Error al eliminar usuarios inactivos: No recipients defined
+2023-09-26 19:46:08  error : Error al eliminar usuarios inactivos: No recipients defined
+2023-09-26 19:46:55  error : Error al eliminar usuarios inactivos: usersService.findAllUsers(...).lean is not a function
+2023-09-26 19:51:06  error : Error al eliminar usuarios inactivos: No recipients defined
+2023-09-26 19:53:02  error : Error al eliminar usuarios inactivos: req.status is not a function
+2023-09-26 20:39:51  error : Usuario no encontrado en la base de datosRequiere documentación de identifiación, domicilio y estado de cuenta para ser usuario premium
+2023-09-26 20:41:18  error : Usuario no encontrado en la base de datosRequiere documentación de identifiación, domicilio y estado de cuenta para ser usuario premium
