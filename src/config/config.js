@@ -18,4 +18,5 @@ export default {
     gmail_user: process.env.GMAIL_USER,
     gmail_password: process.env.GMAIL_PASSWORD,
     stripe_secret: process.env.STRIPE_SECRET,
+    base_url: process.env.BASE_URL,
 }

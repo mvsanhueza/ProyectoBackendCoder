@@ -68,13 +68,12 @@ passport.use('login', new LocalStrategy(
 //Estrategia passport github:
 passport.use('githubLogin', new GithubStrategy(
     {
-        clientID: process.env.GITHUB_CLIENT_ID,
-        clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        callbackURL: '/api/sessions/github',
+        clientID: config.github_client_id,
+        clientSecret: config.github_client_secret,
+        callbackURL:  `${config.base_url}/api/sessions/github`,
     },
     async (accessToken, refreshToken, profile, done) => {
 
-        console.log(profile);
         const { name, email, login } = profile._json;
 
         try {
@@ -142,9 +141,9 @@ passport.use('githubLogin', new GithubStrategy(
 //Estrategia passport Google:
 passport.use('googleLogin', new GoogleStrategy(
     {
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: '/api/sessions/google',
+        clientID: config.google_client_id,
+        clientSecret: config.google_client_secret,
+        callbackURL: `${config.base_url}/api/sessions/google`,
     },
     async (accessToken, refreshToken, profile, done) => {
         const { name, email } = profile._json;
