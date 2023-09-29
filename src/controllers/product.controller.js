@@ -31,12 +31,12 @@ export const getProducts = async (req, res) => {
         result.nextPage = products.nextPage;
         result.hasPrevPage = products.hasPrevPage;
         result.hasNextPage = products.hasNextPage;
-        result.page = page;
+        result.page = products.page;
 
         //Se busca el prevlink y el nextling según corresponda:
         let linkAddOptions = (limit ? (`&limit=${limit}`) : "") + (sort ? (`&sort=${sort}`) : "") + (query ? (`&query=${query}`) : "");
-        result.prevLink = products.hasPrevPage ? (`http://localhost:8080/api/products?page=${products.prevPage}` + linkAddOptions) : null;
-        result.nextLink = products.hasNextPage ? (`http://localhost:8080/api/products?page=${products.nextPage}` + linkAddOptions) : null;
+        result.prevLink = products.hasPrevPage ? (`/api/products?page=${products.prevPage}` + linkAddOptions) : null;
+        result.nextLink = products.hasNextPage ? (`/api/products?page=${products.nextPage}` + linkAddOptions) : null;
     }
     catch (error) {
         req.logger.error('Error al cargar productos: ' + error.message);

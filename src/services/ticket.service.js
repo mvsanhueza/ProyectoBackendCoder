@@ -31,6 +31,17 @@ class TicketService {
             return error;
         }
     }
+
+    async findByIdAndPopulate(id, populateStr){
+        try{
+            const response = await ticketMongo.findByIdAndPopulate(id, populateStr);
+            return response;
+        }
+        catch(error){
+            return null;
+        }
+    }
+
 }
 
 const ticketService = new TicketService();

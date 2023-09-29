@@ -16,6 +16,15 @@ class ProductsService {
             return error;
         }
     }
+    async getAllProducts(){
+        try{
+            const products = await productsMongo.findAll();
+            return products;
+        }
+        catch (error){
+            return error;
+        }
+    }
     async getProductById(id){
         try{
             const product = await productsMongo.findOneById(id);

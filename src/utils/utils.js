@@ -15,29 +15,33 @@ export const compareData = async (data, hashData) => {
 }
 
 export const JSONParse = (data) => {
-    try{
+    try {
         const obj = JSON.parse(data);
         return obj;
     }
-    catch{
+    catch {
         return {};
     }
+}
+
+export const generateUrl = (protocol, host, subdirectory) => {
+    return `${protocol}://${host}/${subdirectory}`;
 }
 
 //Multer: 
 const storage = multer.diskStorage({
     //Destinacion:
-    destination: (req,file,cb) =>{
+    destination: (req, file, cb) => {
         const body = req.body;
         const docName = Object.values(body)[0];
         const folder = docName === 'profileImg' ? 'profile' : docName === 'product' ? 'products' : 'documents';
 
         cb(null, __dirname + '/public/documents/' + folder);
     },
-    filename: (req, file, cb) =>{
+    filename: (req, file, cb) => {
         const userId = req.params.uid;
         cb(null, userId + '_' + file.originalname);
     }
 })
 
-export const uploader = multer({storage});
+export const uploader = multer({ storage });

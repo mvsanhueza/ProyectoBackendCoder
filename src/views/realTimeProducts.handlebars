@@ -1,3 +1,4 @@
+{{>navbar user=this.session}}
 <div class="containerForm">
     <form class="w-25" id="form_Product">
         <div class="mb-3">
@@ -37,8 +38,8 @@
     </form>
     <div class="contenedorProduct" id="productsContainer">
         {{#each products}}
-        <div id={{this.id}}>
-            <button onclick="borrarProducto_Click({{this.id}})" class="deleteProduct_button"><i class="bi bi-trash"></i></button>
+        <div id={{this._id}}>
+            <button onclick="borrarProducto_Click('{{this._id}}')" class="deleteProduct_button"><i class="bi bi-trash"></i></button>
             <p class="productTitle"><strong>{{this.title}}</strong></p>
             <p><strong>Descripción: </strong>{{this.description}}</p>
             <p><strong>Code: </strong>{{this.code}}</p>

@@ -60,7 +60,7 @@ export const getCartProducts = async (req, res, next) => {
     try {
         const productsCart = await cartsService.findByIdAndPopulate(id, 'products.id_product');
         if (productsCart) {
-            res.render('cart', { products: productsCart.products });
+            res.render('cart', { products: productsCart.products, session: req.user });
         }
         else {
             CustomError.createError({
@@ -311,36 +311,17 @@ export const getPurchase = async (req, res) => {
             amount: amount,
             purchaser: req.user.email
         }
-        const newTicket = await ticketService.createTicket(objTicket);
-        const cart = await cartsService.getCartById(cid);
-        //Se descuentan los stocks de los productos comprados y se eliminan los productos del carrito:
+
+        req.session.ticket = objTicket;
+
+        //Se descuentan los productos seleccionados antes de pasar al proceso de pago:
         for (let i = 0; i < productsTicket.length; i++) {
 
             const newProduct = { ...productsPurchase[i].id_product, stock: productsPurchase[i].id_product.stock - productsPurchase[i].quantity };
             const productUpdated = await productsService.updateProduct(newProduct._id, newProduct);
         }
-        cart.products = cart.products.filter(p => !productsPurchase.some(pP => pP.id_product._id.toString() == p.id_product.toString()));
 
-        await cartsService.updateCart(cid, cart);
-
-        //Se genera el texto html de email
-        let htmlMail = `<h1> Hemos confirmado tu compra </h1>`;
-        htmlMail += `<h2> El código de seguimiento es ${newTicket.code}: </h2>`;
-        for (let i = 0; i < productsPurchase.length; i++) {
-            htmlMail += `<p> <strong> ${productsPurchase[i].id_product.title}</strong> - ${productsPurchase[i].quantity} Unidades </h3>`;
-        }
-
-        htmlMail += `<h2> El monto total es de $${amount} </h2>`;
-        htmlMail += `<h3> Muchas gracias por tu compra! </h3>`;
-
-        //Se envía el mail con el ticket:
-        let email = await transporter.sendMail({
-            to: req.user.email,
-            subject: `Compra ${newTicket.code}`,
-            html: htmlMail
-        });
-
-        res.status(200).render('checkout', { code: newTicket.code, products: productsPurchase, amount: newTicket.amount });
+        res.redirect('/api/payment/checkout');
     }
     catch (err) {
         req.logger.error('Error al realizar la compra: ' + err.message)

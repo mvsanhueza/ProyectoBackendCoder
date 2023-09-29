@@ -7,7 +7,9 @@ import sessionRouter from './routes/session.routes.js'
 import usersRouter from './routes/users.routes.js';
 import viewsRouter from './routes/views.routes.js';
 import chatRouter from './routes/chat.routes.js';
+import paymentRouter from './routes/payments.routes.js';
 import loggerTestRouter from './routes/loggerTest.routes.js';
+import realTimeProductsRouter from './routes/realTimeProducts.routes.js';
 import { engine } from 'express-handlebars';
 import * as path from 'path';
 import { __dirname } from './utils/utils.js';
@@ -84,8 +86,10 @@ app.use('/api/carts', cartRouter);
 app.use('/api/sessions', sessionRouter);
 app.use('/api/users', usersRouter)
 app.use('/api/chat', chatRouter)
+app.use('/api/payment', paymentRouter);
 app.use('/api/', viewsRouter);
 app.use('/api/loggerTest', loggerTestRouter)
+app.use('/api/realTimeProducts', realTimeProductsRouter);
 app.use('/apidoc', swaggerUiExpress.serve, swaggerUiExpress.setup(spec));
 
 //Ruta public:

@@ -218,3 +218,46 @@
 2023-09-26 19:53:02  error : Error al eliminar usuarios inactivos: req.status is not a function
 2023-09-26 20:39:51  error : Usuario no encontrado en la base de datosRequiere documentación de identifiación, domicilio y estado de cuenta para ser usuario premium
 2023-09-26 20:41:18  error : Usuario no encontrado en la base de datosRequiere documentación de identifiación, domicilio y estado de cuenta para ser usuario premium
+2023-09-28 18:10:42  error : Error al generar el checkout: Not a valid URL
+2023-09-28 18:13:26  error : Error al generar el checkout: Not a valid URL
+2023-09-28 18:21:04  error : Error al generar el checkout: Not a valid URL
+2023-09-28 18:21:53  error : Error al generar el checkout: window is not defined
+2023-09-28 18:22:30  error : Error al generar el checkout: window is not defined
+2023-09-28 18:23:02  error : Error al generar el checkout: window is not defined
+2023-09-28 18:23:19  error : Error al generar el checkout: window is not defined
+2023-09-28 18:24:14  error : Error al generar el checkout: window is not defined
+2023-09-28 18:24:32  error : Error al generar el checkout: window is not defined
+2023-09-28 18:25:23  error : Error al generar el checkout: window is not defined
+2023-09-28 18:25:31  error : Error al generar el checkout: window is not defined
+2023-09-28 18:27:49  error : Error al generar el checkout: window is not defined
+2023-09-28 18:28:28  error : Error al generar el checkout: window is not defined
+2023-09-28 18:28:37  error : Error al generar el checkout: window is not defined
+2023-09-28 18:28:47  error : Error al generar el checkout: window is not defined
+2023-09-28 18:32:32  error : Error al generar el checkout: window is not defined
+2023-09-28 18:32:36  error : Error al generar el checkout: window is not defined
+2023-09-28 18:32:39  error : Error al generar el checkout: window is not defined
+2023-09-28 18:32:54  error : Error al generar el checkout: window is not defined
+2023-09-28 18:33:23  error : Error al generar el checkout: window is not defined
+2023-09-28 18:33:46  error : Error al generar el checkout: window is not defined
+2023-09-28 18:33:56  error : Error al generar el checkout: window is not defined
+2023-09-28 18:37:32  error : Error al generar el checkout: window is not defined
+2023-09-28 18:38:53  error : Error al generar el checkout: window is not defined
+2023-09-28 18:40:19  error : Error al generar el checkout: window is not defined
+2023-09-28 18:40:57  error : Error al generar el checkout: window is not defined
+2023-09-28 18:45:48  error : Error al generar el checkout: window is not defined
+2023-09-28 18:46:03  error : Error al generar el checkout: Missing required param: success_url.
+2023-09-28 19:18:18  error : Error al terminar el pedido: Cannot read properties of undefined (reading 'toString')
+2023-09-28 19:19:26  error : Error al terminar el pedido: ticketService.createTicket(...).populate is not a function
+2023-09-28 19:22:32  error : Error al terminar el pedido: newTicketCreate.populate(...).lean is not a function
+2023-09-28 19:23:20  error : Error al terminar el pedido: Cannot read properties of undefined (reading 'toString')
+2023-09-28 19:25:01  error : Error al terminar el pedido: amount is not defined
+2023-09-28 19:27:50  error : Error al terminar el pedido: newTicketCreate.populate(...).lean is not a function
+2023-09-28 19:28:30  error : Error al terminar el pedido: newTicketCreate.populate(...).lean is not a function
+2023-09-28 19:34:27  error : Error al terminar el pedido: newTicketCreate.populate(...).lean is not a function
+2023-09-28 19:36:09  error : Error al terminar el pedido: newTicketCreate.populate(...).lean is not a function
+2023-09-28 19:43:14  error : Error al terminar el pedido: ticketService.createTicket(...).lean is not a function
+2023-09-28 19:46:29  error : Error al terminar el pedido: Cannot read properties of null (reading 'code')
+2023-09-28 20:04:47  error : Error al retornar stock: Cannot read properties of undefined (reading 'products')
+2023-09-28 20:05:21  error : Error al retornar stock: Cannot read properties of undefined (reading 'products')
+2023-09-28 20:05:37  error : Error al retornar stock: Cannot read properties of undefined (reading 'products')
+2023-09-28 20:06:00  error : Error al retornar stock: Cannot read properties of null (reading 'stock')
