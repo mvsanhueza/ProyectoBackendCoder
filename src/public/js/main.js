@@ -76,6 +76,19 @@ async function goToCart_Click() {
     }
 }
 
+async function borrarCartProduct_Click(pid){
+    try{
+        const user = await getCurrentUser();
+        const cid = user.cart.id_cart;
+        console.log(pid);
+        const response = await fetch(`/api/carts/${cid}/products/${pid}`, { method: 'DELETE' })
+        location.reload();
+    }
+    catch(error){
+        console.log({error:error});
+    }
+}
+
 async function addToCart_Click(btn) {
     //Se utiliza le id del carrito ya creado en mongoose, al no poder almacenar el id de un carrito nuevo:  
     //Se agrega el producto al carrito:

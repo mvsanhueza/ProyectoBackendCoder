@@ -60,6 +60,7 @@ export const getCartProducts = async (req, res, next) => {
     try {
         const productsCart = await cartsService.findByIdAndPopulate(id, 'products.id_product');
         if (productsCart) {
+            console.log(productsCart);
             res.render('cart', { products: productsCart.products, session: req.user });
         }
         else {
