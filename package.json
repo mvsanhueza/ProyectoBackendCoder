@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start:dev": "nodemon src/app.js -m dev",
-    "start:prod": "nodemon src/app.js -m prod",
+    "start": "node src/app.js -m prod",
     "start:test": "nodemon src/app.js -m test",
     "test": "mocha test/routes/**.test.js --file test/setup.test.js --timeout 5000 -m test"
   },
