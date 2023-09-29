@@ -3,6 +3,7 @@ import ENUM_Errors from "../services/errors/enums.js";
 import { generateProductErrorInfo } from "../services/errors/info.js";
 import productsService from "../services/products.service.js";
 import { fakerES } from '@faker-js/faker'
+import { transporter } from "../utils/nodemailer.js";
 
 
 export const getProducts = async (req, res) => {
@@ -70,7 +71,7 @@ export const createProduct = async (req, res, next) => {
 
         const newObjProduct = req.body
         //Se analiza si el owner es premium o admin:
-        if(req.user.role === 'premium'){
+        if (req.user.role === 'premium') {
             newObjProduct.owner = req.user.email;
         }
 
@@ -98,10 +99,10 @@ export const updateProduct = async (req, res, next) => {
     try {
 
         //Se analiza si el owner del producto es el usuario en caso de que sea premium:
-        if(req.user.role === 'premium'){
+        if (req.user.role === 'premium') {
             const product = await productsService.getProductById(id);
-            if(product.owner !== req.user.email){
-                return res.status(403).json({error: 'No tiene permisos para realizar esta acción'});
+            if (product.owner !== req.user.email) {
+                return res.status(403).json({ error: 'No tiene permisos para realizar esta acción' });
             }
         }
 
@@ -122,17 +123,34 @@ export const updateProduct = async (req, res, next) => {
         next(error);
     }
 }
-
 export const deleteProduct = async (req, res) => {
     const id = req.params.id;
-     //Se analiza si el owner del producto es el usuario en caso de que sea premium:
-    if(req.user.role === 'premium'){
-        const product = await productsService.getProductById(id);
-        if(product.owner !== req.user.email){
-            return res.status(403).json({error: 'No tiene permisos para realizar esta acción'});
-        }
+
+    const product = await productsService.getProductById(id)
+
+    if (!product) {
+        res.status(404).send('Producto no encontrado');
     }
+
+    //Se analiza si el owner del producto es el usuario en caso de que sea premium:
+    if (req.user.role === 'premium' && product.owner !== req.user.email) {
+        return res.status(403).json({ error: 'No tiene permisos para realizar esta acción' });
+    }
+
     const mensaje = await productsService.deleteProduct(id);
+
+    //Se envia mail al usuario del producto que fue eliminado:
+    if(product.owner && product.owner !== ""){
+        //Se genera el texto html de email
+        let htmlMail = `<h2> Su producto ${product.title} ha sido eliminado </h2>`;
+        //Se envía el mail con el ticket:
+        let email = await transporter.sendMail({
+            to: product.owner,
+            subject: `Producto eliminado`,
+            html: htmlMail
+        });
+    }
+
     req.logger.debug('Producto eliminado')
     res.status(200).send(mensaje);
 }
