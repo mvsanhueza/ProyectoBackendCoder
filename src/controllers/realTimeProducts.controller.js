@@ -21,7 +21,6 @@ class realTimeProductsController {
 
             socket.on('client:deleteProduct', async (id) => {
                 try {
-                    console.log(id);
                     const mensaje = await productsService.deleteProduct(id);
                     //Se actualizan los productos:
                     const products = (await productsService.getAllProducts()).map((pr) => {return {...pr, _id: pr._id.toString()}} );
@@ -32,7 +31,6 @@ class realTimeProductsController {
                 }
             })
         })
-        console.log(products);
         res.render('realTimeProducts', { products, session: req.user });
 
     }

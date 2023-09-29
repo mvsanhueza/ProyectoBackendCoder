@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken'
 import CustomError from "../services/errors/CustomError.js";
 import { generateUserUpdateError } from "../services/errors/info.js";
 import ENUM_Errors from "../services/errors/enums.js";
+import { generateUrl } from "../utils/utils.js";
 
 export const signup = async (req, res) => {
     const { email, password, first_name, last_name } = req.body;
@@ -52,10 +53,10 @@ export const sendRecoverPassword = async (req, res) => {
     //Se envía por email el link de recuperacion de contraseña:
 
     //Se crea el token:
-    let token = jwt.sign({ userId: user._id }, config.session_secret, { expiresIn: "1h" });
+    let token = jwt.sign({ userId: user._id }, config.session_secret, { expiresIn: "1h" });  
 
     //Link de la forma /api/sessions/recoverPassword/userId/token
-    let link = 'http://localhost:' + config.port + '/api/sessions/recoverPassword/' + user._id + '/' + token;
+    let link = generateUrl(req.protocol, req.headers.host, 'api/sessions/recoverPassword/' + user._id + '/' + token);
 
     //Se genera el texto html de email
     let htmlMail = `<h2> ¿Quieres recuperar tu contraseña? </h2>`;

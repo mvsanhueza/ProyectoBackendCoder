@@ -100,7 +100,7 @@ async function addToCart_Click(btn) {
         //SE busca el cartId del usuario:
         const cartId = user.cart.id_cart;
 
-        const response = await fetch(`http://localhost:8080/api/carts/${cartId}/products/${btn.id}`, {
+        const response = await fetch(`/api/carts/${cartId}/products/${btn.id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

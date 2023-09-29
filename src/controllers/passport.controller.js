@@ -5,7 +5,7 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as GithubStrategy } from 'passport-github2';
 //import { Strategy as FacebookStrategy } from 'passport-facebook';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import { compareData } from '../utils/utils.js';
+import { compareData, generateUrl } from '../utils/utils.js';
 
 //Serializadores:
 passport.serializeUser((user, done) => {
@@ -70,10 +70,12 @@ passport.use('githubLogin', new GithubStrategy(
     {
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        callbackURL: 'http://localhost:8080/api/sessions/github',
+        callbackURL: '/api/sessions/github',
     },
     async (accessToken, refreshToken, profile, done) => {
-        const { name, email } = profile._json;
+
+        console.log(profile);
+        const { name, email, login } = profile._json;
 
         try {
             const userDB = await usersService.findUser({ externalLogin: true, githubId: profile.id });
@@ -87,7 +89,7 @@ passport.use('githubLogin', new GithubStrategy(
             const user = {
                 first_name: name.split(' ')[0],
                 last_name: name.split(' ')[1] || '',
-                email: email ?? 'default@github.com',
+                email: email ?? `${login}@github.com`,
                 externalLogin: true,
                 githubId: profile.id,
                 password: '123456',
@@ -142,7 +144,7 @@ passport.use('googleLogin', new GoogleStrategy(
     {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: 'http://localhost:8080/api/sessions/google',
+        callbackURL: '/api/sessions/google',
     },
     async (accessToken, refreshToken, profile, done) => {
         const { name, email } = profile._json;
